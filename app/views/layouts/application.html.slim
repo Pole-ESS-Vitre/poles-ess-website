@@ -27,7 +27,7 @@ html lang='fr'
               rect width="100" height="15" rx="8"
               rect y="30" width="100" height="15" rx="8"
               rect y="60" width="100" height="15" rx="8"
-          = link_to root_path, title: "Page d'accueil", class: "block flex items-center w-auto" do
+          = link_to root_path, class: 'block flex items-center w-auto', title: "Page d'accueil" do
             - if Setting.logo.present?
               => image_tag Setting.logo.variant(resize_to_limit: [nil, 75]), class: "max-h-14 md:max-h-full", title: Setting.pole_name
         .hidden.md:flex.items-center.flex-1.justify-end.px-6.py-4

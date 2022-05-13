@@ -4,9 +4,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.1'
 
 # Core ====================================================
-gem 'rails', '~> 6.0.3'
-gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.3'
+gem 'rails', '~> 6.1'
+gem 'pg'
+gem 'puma'
 gem 'webpacker', '~> 4.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
@@ -38,7 +38,7 @@ gem 'MailchimpMarketing'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
-  gem "rspec-rails", "~> 4.0"
+  gem "rspec-rails"
   gem "dotenv-rails"
 end
 

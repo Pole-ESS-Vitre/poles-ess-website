@@ -20,7 +20,7 @@ html lang="#{I18n.locale}"
           aside
             ul.nav.flex-column
               li.nav-item.brand
-                = link_to "#{Setting.pole_name} Admin", admin_root_path, class: "nav-link "
+                = link_to "#{Setting.pole_name} Admin", admin_root_path, class: 'nav-link'
               li.nav-item
                 = active_link_to 'Tableau de bord', admin_root_path, title: "Retour à l'accueil", class: "nav-link", active: :exclusive
               li.nav-item.nav-header
