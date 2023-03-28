@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_26_202346) do
+ActiveRecord::Schema.define(version: 2022_10_09_213259) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_trgm"
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 2022_04_26_202346) do
   end
 
   create_table "active_storage_variant_records", force: :cascade do |t|
-    t.integer "blob_id", null: false
+    t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end

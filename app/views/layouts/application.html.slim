@@ -14,8 +14,6 @@ html lang='fr'
   = stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
   = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   = render 'shared/favicon'
-  - if Rails.env.production?
-    = render 'shared/analytics'
 
   body.h-full
     .relative data-controller="main-menu"
@@ -83,17 +81,17 @@ html lang='fr'
 
     .footer
       .footer-line.w-full.bg-primary
-      #newsletter-block.newsletter-subscription.bg-c-gray-100
-        .max-w-6xl.mx-auto.flex.flex-col.md:flex-row.py-10
-          .w-full.md:w-3/5.text-center.md:text-right.px-6
-            p.text-body.text-base.uppercase = Setting.newsletter_subscription_title
-            p.text-body.text-sm = Setting.newsletter_subscription_description
-          .w-full.md:w-2/5.px-6
-            = form_with url: newsletters_path, method: :post, local: true, class: "flex" do |f|
-              = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mr-3 text-body text-xs"
-              = f.submit 'Envoyer', class: 'btn btn-default'
-
-      .footer-line-xl.w-full
+      - if feature_enabled?('newsletter')
+        #newsletter-block.newsletter-subscription.bg-c-gray-100
+          .max-w-6xl.mx-auto.flex.flex-col.md:flex-row.py-10
+            .w-full.md:w-3/5.text-center.md:text-right.px-6
+              p.text-body.text-base.uppercase = Setting.newsletter_subscription_title
+              p.text-body.text-sm = Setting.newsletter_subscription_description
+            .w-full.md:w-2/5.px-6
+              = form_with url: newsletters_path, method: :post, local: true, class: "flex" do |f|
+                = f.email_field :email, placeholder: 'Votre email', 'aria-label': 'Votre email', required: true, class: "flex-1 px-2 block w-full rounded-none border border-gray-300 mr-3 text-body text-xs"
+                = f.submit 'Envoyer', class: 'btn btn-default'
+        .footer-line-xl.w-full
 
       .w-full.bg-c-gray-100
         .max-w-6xl.mx-auto.flex.flex-col.md:flex-row
@@ -116,7 +114,7 @@ html lang='fr'
                 li = link_to "Evénements", events_path, class: "footer-link"
                 - if feature_enabled?('formations')
                   li = link_to "Formations", formations_path, class: "footer-link"
-                - if feature_enabled?('key_numbers')
+                - if @key_number_page.enabled?
                   li = link_to "Chiffres clés", key_numbers_path, class: "footer-link"
                 li = link_to "Ressources", resources_path, class: "footer-link"
           .separator.hidden.md:block.h-7.my-auto
@@ -167,6 +165,9 @@ html lang='fr'
             - if Setting.linkedin.present?
               = link_to Setting.linkedin, title: "page linkedin", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
                 i.fab.fa-linkedin.leading-snug
+            - if Setting.twitter.present?
+              = link_to Setting.twitter, title: "page twitter", class: "inline-block w-8 h-8 p-1 border text-center ml-2" do
+                i.fab.fa-twitter.leading-snug
 
 
 
