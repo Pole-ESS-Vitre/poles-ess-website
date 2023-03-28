@@ -13,7 +13,7 @@ module Api
       begin
         response =
         @api_instance.lists.set_list_member(
-          ENV['MAILCHIMP_LIST_ID'],
+          ENV['MAILCHIMP_NEWSLETTER_ID'],
           subscriber_hash(email),
           {
             'email_address' => email,
